@@ -1,10 +1,9 @@
-
 import { ThreeDots } from "react-loader-spinner";
 import ReactStars from "react-rating-stars-component";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 import DCarousel from "./carousels";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useCounter } from "../store/useccounter";
 
 type Product = {
@@ -17,19 +16,17 @@ type Product = {
 };
 
 const Card = () => {
+  const { count, increCount } = useCounter();
+  const [counter, setCounter] = useState(0);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [formData, setFormData] = useState<Omit<Product, "id"> | null>(null);
 
-const {count,increCount}=useCounter();
-const [counter,setCounter]=useState(0);
-  const [products, setProducts] = useState<Product[]>([]); //fetch
-  const [isLoading, setIsLoading] = useState(true); //loader
-  const [error, setError] = useState<string | null>(null); //error
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null); //upadteEdit
-  const [formData, setFormData] = useState<Omit<Product, "id"> | null>(null); //editform
-
-  useEffect(()=>{
+  useEffect(() => {
     setCounter(count);
-  },[count])  
-
+  }, [count]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -53,12 +50,9 @@ const [counter,setCounter]=useState(0);
   const handleDelete = async (id: number) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        const response = await fetch(
-          `https://fakestoreapi.com/products/${id}`,
-          {
-            method: "DELETE",
-          }
-        );
+        const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+          method: "DELETE",
+        });
         if (!response.ok) {
           throw new Error("Failed to delete product");
         }
@@ -165,16 +159,16 @@ const [counter,setCounter]=useState(0);
                 Options
               </button>
               <button
-              onClick={()=>increCount(1)}
-              className="h-[33px] w-[120px] hover:bg-[#004f9a] bg-[#1A65C6] text-white rounded-lg">
-                AddToCart 
-                
+                onClick={() => increCount(1)}
+                className="h-[33px] w-[120px] hover:bg-[#004f9a] bg-[#1A65C6] text-white rounded-lg"
+              >
+                AddToCart
               </button>
             </div>
           </div>
         ))}
       </div>
-      editForm
+
       {editingProduct && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-900 bg-opacity-50">
           <div className="bg-white p-6 rounded-lg w-80">
@@ -182,7 +176,7 @@ const [counter,setCounter]=useState(0);
             <label className="block mb-2">Title</label>
             <input
               type="text"
-             
+              value={formData?.title || ""}
               onChange={(e) =>
                 setFormData({ ...formData!, title: e.target.value })
               }
@@ -191,7 +185,7 @@ const [counter,setCounter]=useState(0);
             <label className="block mb-2">Price</label>
             <input
               type="number"
-            
+              value={formData?.price || ""}
               onChange={(e) =>
                 setFormData({ ...formData!, price: parseFloat(e.target.value) })
               }
@@ -200,7 +194,7 @@ const [counter,setCounter]=useState(0);
             <label className="block mb-2">Image URL</label>
             <input
               type="text"
-             
+              value={formData?.image || ""}
               onChange={(e) =>
                 setFormData({ ...formData!, image: e.target.value })
               }
@@ -208,6 +202,7 @@ const [counter,setCounter]=useState(0);
             />
             <label className="block mb-2">Description</label>
             <textarea
+              value={formData?.description || ""}
               onChange={(e) =>
                 setFormData({ ...formData!, description: e.target.value })
               }
@@ -216,7 +211,7 @@ const [counter,setCounter]=useState(0);
             <label className="block mb-2">Category</label>
             <input
               type="text"
-            
+              value={formData?.category || ""}
               onChange={(e) =>
                 setFormData({ ...formData!, category: e.target.value })
               }
