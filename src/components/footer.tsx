@@ -37,7 +37,7 @@ const Footer = () => {
               <div className="h-5"></div>
             </div>
           </div>
-          <hr  className="mx-60"/>
+          <hr  className="md:mx-60 mx-20"/>
           <div className="text-center pt-4">
           <p> © 2024 Infi Shop. All Rights Reserved.</p>
         </div>

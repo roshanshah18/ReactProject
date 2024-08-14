@@ -15,7 +15,7 @@ const DCarousel = () => (
                 <img src="toa-heftiba-KQ1n6HzSahY-unsplash.jpg" alt="Slide 1" className="w-full h-full object-fill" />
                 <p className="absolute top-14 font-semibold text-black md:text-3xl md:top-20 md:right-52 md:font-semibold bg-opacity-50 md:text-white py-2">
 
-                   <p>Grab Quick Deal ASAP!</p>
+                   Grab Quick Deal ASAP!
                 </p>
             </div>
             <div className="relative h-full">
