@@ -31,8 +31,9 @@ const Footer = () => {
             <div className="flex flex-col gap-2 text-center sm:text-left">
               <p className="font-bold text-lg sm:text-[20px] hover:underline cursor-pointer">Pay With</p>
               <div className="flex justify-center sm:justify-start">
+           
                 <img className="h-10 sm:h-12 mx-2" src="pngwing.com (1).png" alt="Payment Option 1" />
-                <img className="h-10 sm:h-12 mx-2" src="pngwing.com (2).png" alt="Payment Option 2" />
+                
               </div>
               <div className="h-5"></div>
             </div>
