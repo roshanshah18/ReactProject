@@ -31,7 +31,7 @@ const Home = () => {
       <div className='relative'>
         <button
           onClick={() => setOpenModal(true)}
-          className="w-40 md:w-24 bg-[#1A65C6]  hover:bg-[#004f9a] rounded-md p-1 mt-2 text-white
+          className="w-40  md:w-24 bg-[#1A65C6]  hover:bg-[#004f9a] rounded-md p-1 mt-4 text-white
          absolute right-3"
         >
         <p>Add New Products</p>

@@ -18,6 +18,7 @@ type Product = {
 const Card = () => {
   const { count, increCount } = useCounter();
   const [counter, setCounter] = useState(0);
+
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -128,7 +129,7 @@ const Card = () => {
         {products.map((item) => (
           <div
             key={item.id}
-            className="w-full bg-white shadow-sm shadow-black border outline outline-0 hover:outline-1 rounded-lg p-4 flex flex-col"
+            className="w-full bg-white shadow-sm shadow-gray-400 border outline outline-0 hover:outline-1 rounded-lg p-4 flex flex-col"
           >
             <div className="flex justify-between gap-2 text-[#1A65C6] text-xl mb-4">
               <RiDeleteBin6Line
