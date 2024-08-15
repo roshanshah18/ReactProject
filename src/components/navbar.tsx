@@ -6,9 +6,15 @@ import { CiSearch } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { PiDiamondsFourFill, PiDiamondsFourDuotone } from "react-icons/pi";
 import { useCounter } from "../store/useccounter";
+import  { useState } from 'react';
+import AddProductForm from '../forms/addproduct';
+import { ImCross } from 'react-icons/im';
+import Modal from '../components/Modal';
 
 const Navbar = () => {
   const { count } = useCounter();  
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
   
   return (
     <>
@@ -113,7 +119,31 @@ const Navbar = () => {
           <p className="hover:underline">Mobile & Phones</p>
           <p className="hover:underline">Laptops</p>
           <p className="hover:underline text-gray-500">More</p>
+          <button
+          onClick={() => setOpenModal(true)}
+          className="w-40   bg-[#1A65C6]  hover:bg-[#004f9a] rounded-md p-1  text-white
+         absolute right-3"
+        >
+        <p>Add New Products</p>
+           <span className='hidden'>Products</span>
+        </button>
         </div>
+        
+      {openModal && (
+        <Modal>
+          <div className="bg-gray-100 w-96 md:w-2/6 rounded-md relative p-4">
+            <button
+              type="button"
+              className="absolute top-2 right-2"
+              onClick={() => setOpenModal(false)}
+            >
+              <ImCross />
+            </button>
+            <AddProductForm />
+          </div>
+        </Modal>
+      )}
+     
       </div>
     </>
   );
